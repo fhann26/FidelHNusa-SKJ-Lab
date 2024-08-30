@@ -1,0 +1,23 @@
+# Compiler dan flags
+COMPILER = g++
+FLAGS 	 = -g -Wall
+
+# Spesifikasi executable dan source code
+EXE = addNumbers
+SRC	= addNumbers.cpp
+
+# Deklarasi target 'all', untuk compile src menjadi executable
+all : $(EXE)
+	$(COMPILER) $(FLAGS) -o $(EXE) $(SRC) 
+
+# Deklarasi 'dump', untuk dissasemble executable menjadi file assembly
+dump : $(EXE)
+	objdump -d $(EXE) > $(EXE).asm
+
+# Run executable
+run : $(EXE)
+	./$(EXE)
+	
+# Hapus hasil 'all' dan 'dump' tanpa menghapus src
+clean :
+	rm -f $(EXE) $(EXE).asm
